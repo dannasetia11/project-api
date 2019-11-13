@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <style>
+      .container {
+        width: 80%;
+        border: 2px solid black;
+        text-align: center;
+        background-color: darkgray;
+      }
+      .container .container-fluid {
+        width: 100%;
+        background-color: grey;
+      }
+      .container .container-fluid img {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        margin-top: 5px;
+        box-shadow: black 4px 4px 4px;
+      }
+      .container .container-fluid .main {
+        text-align: left;
+        margin-left: 40%;
+      }
+    </style>
+
+    <div class="container">
+      <div class="container-fluid">
+        <h2><span id="name"></span></h2>
+        <br />
+        <img src="" id="img" alt="img" />
+        <br />
+        <br />
+        <div class="main">
+          <h4>ID : <span id="id"></span></h4>
+          <h4>Repo :<span id="repo"></span></h4>
+          <h4>Following :<span id="following"></span></h4>
+          <h4>Followers :<span id="followers"></span></h4>
+        </div>
+        <button type="button" class="btn btn-dark">
+          <a href="following.html" style="text-decoration: none; color: white;">
+            Following
+          </a>
+        </button>
+        <button type="button" class="btn btn-dark">
+          <a href="followers.html" style="text-decoration: none; color: white;">
+            Followers
+          </a>
+        </button>
+      </div>
+    </div>
+    <script>
+      fetch("https://api.github.com/users/dannasetia11")
+        .then(response => {
+          return response.json();
+        })
+        .then(data => {
+          let get = data;
+          console.log(get.followers_url);
+          document.getElementById("img").src = get.avatar_url;
+          document.getElementById("name").innerHTML = get.name;
+          document.getElementById("id").innerHTML = get.id;
+          document.getElementById("repo").innerHTML = get.public_repos;
+          document.getElementById("followers").innerHTML = get.followers;
+          document.getElementById("following").innerHTML = get.following;
+          document.getElementById("link").href = get.html_url;
+
+          // Work with JSON data here
+          console.log(get);
+        })
+        .catch(err => {
+          // Do something for an error here
+        });
+    </script>
+  </body>
+</html>
