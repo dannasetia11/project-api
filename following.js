@@ -7,7 +7,7 @@ function append(parent, el) {
 }
 
 const ul = document.getElementById("authors");
-const url = "https://api.github.com/users/dannasetia11/followers";
+const url = "https://api.github.com/users/dannasetia11/following";
 fetch(url)
   .then(resp => resp.json())
   .then(function(data) {
